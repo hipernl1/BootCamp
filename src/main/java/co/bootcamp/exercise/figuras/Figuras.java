@@ -10,18 +10,16 @@ public final class Figuras {
 		return cuadrado.toString();
 	}
 	
-	
 	public static String generarTriangulo(int tamaño) {
 		StringBuilder triangulo = new StringBuilder();
 		triangulo.append(generarFigura(tamaño, tamaño - 1, 1, -1, +2));
 		return triangulo.toString();
 	}
-
 	
 	public static String generarRombo(int tamaño) {
 		StringBuilder rombo = new StringBuilder();
-		rombo.append(generarTriangulo(tamaño));
-		rombo.append(generarFigura(tamaño - 1, 1, (tamaño * 2 -3), +1, -2));		
+		rombo.append(generarTriangulo(tamaño))
+			 .append(generarFigura(tamaño - 1, 1, (tamaño * 2 -3), +1, -2));		
 		return rombo.toString();
 	}
 	
