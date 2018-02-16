@@ -50,10 +50,10 @@ public class FraccionTest {
 									.build();
 
 		assertThat(new Fraccion.Builder()
-				.conNumerador(17)
+				.conNumerador(5)
 				.conDenominador(6)
 				.build(), equalTo(fraccion.sumar(new Fraccion.Builder()
-														.conNumerador(5)
+														.conNumerador(1)
 														.conDenominador(2)
 														.build())));		
 	}
@@ -61,16 +61,16 @@ public class FraccionTest {
 	@Test
 	public void restarFracionesSimplificadas() {
 		Fraccion fraccion = new Fraccion.Builder()
-									.conNumerador(5)
-									.conDenominador(3)
+									.conNumerador(1)
+									.conDenominador(2)
 									.build();
 
 		assertThat(new Fraccion.Builder()
-				.conNumerador(17)
-				.conDenominador(12)
+				.conNumerador(1)
+				.conDenominador(6)
 				.build(), equalTo(fraccion.restar(new Fraccion.Builder()
 														.conNumerador(1)
-														.conDenominador(4)
+														.conDenominador(3)
 														.build())));		
 	}
 	

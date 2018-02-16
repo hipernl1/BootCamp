@@ -9,7 +9,7 @@ public final class Fraccion {
 	}
 	
 	private Fraccion(int numerador, int denominador) {
-		int mcd = FraccionUtil.mcd(numerador, denominador);
+		int mcd = OperacionMatematicaUtil.mcd(numerador, denominador);
 		this.numerador = numerador / mcd;
 		this.denominador = denominador / mcd;		
 	}
@@ -35,26 +35,35 @@ public final class Fraccion {
 			return new Fraccion(this); 
 		}
 	}
-
-	public Fraccion sumar(Fraccion fraccionSuma) {		
-		int mcm = FraccionUtil.mcm(this.denominador, fraccionSuma.denominador);
-		return new Fraccion(obtenerNumerador(mcm, this.denominador, this.numerador) + obtenerNumerador(mcm, fraccionSuma.denominador, fraccionSuma.numerador), mcm);
+	
+	
+	public Fraccion sumar(Fraccion fraccionSuma) {
+		return sumarORestar(fraccionSuma, true);
 	}
 	
 	public Fraccion restar(Fraccion fraccionResta) {		
-		int mcm = FraccionUtil.mcm(this.denominador, fraccionResta.denominador);
-		return new Fraccion(obtenerNumerador(mcm, this.denominador, this.numerador) - obtenerNumerador(mcm, fraccionResta.denominador, fraccionResta.numerador), mcm);
+		return sumarORestar(fraccionResta, false);
 	}
-	
-	public Fraccion multiplicar(Fraccion fraccionMultiplicador) {		
-		return new Fraccion(this.numerador * fraccionMultiplicador.numerador , this.denominador * fraccionMultiplicador.denominador);
+		
+	public Fraccion multiplicar(Fraccion fraccionMultiplicador) {
+		return dividirOMultiplicar(fraccionMultiplicador, true);
 	}
 	
 	public Fraccion dividir(Fraccion fraccionDivisora) {		
-		return new Fraccion(this.numerador * fraccionDivisora.denominador, this.denominador * fraccionDivisora.numerador);
+		return dividirOMultiplicar(fraccionDivisora, false);
 	}
 	
-	private int obtenerNumerador(int mcm, int denominador, int numerador) {
+	private Fraccion sumarORestar(Fraccion fraccion, boolean esSuma) {		
+		int mcm = OperacionMatematicaUtil.mcm(this.denominador, fraccion.denominador);
+		return new Fraccion(obtenerNumerador(mcm, this.denominador, this.numerador) + obtenerNumerador(mcm, (esSuma?1:-1)* fraccion.denominador, fraccion.numerador), mcm);
+	}
+	
+	private Fraccion dividirOMultiplicar(Fraccion fraccion, boolean esMultiplicacion) {		
+		return new Fraccion(this.numerador * (esMultiplicacion ? fraccion.numerador : fraccion.denominador) , 
+							this.denominador * (esMultiplicacion ? fraccion.denominador : fraccion.numerador));
+	}
+	
+	private static int obtenerNumerador(int mcm, int denominador, int numerador) {
 		return (mcm/denominador)*numerador;
 	}
 	

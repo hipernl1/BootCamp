@@ -1,6 +1,6 @@
 package co.bootcamp.exercise.fracciones;
 
-public final class FraccionUtil {
+public final class OperacionMatematicaUtil {
 
 	public static int mcd(final int a, final int b) {
 		return b == 0 ? a : mcd(b, a % b);
