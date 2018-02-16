@@ -68,16 +68,16 @@ public class FraccionTest {
 	}
 	
 	@Test
-	public void multiplicarFracionesSimplificadas() {
+	public void restarFracioccnesSimplificadas() {
 		Fraccion resultadoEsperado = new Fraccion.Builder()
-				.conNumerador(5)
-				.conDenominador(6).build();
+									.conNumerador(-115)
+									.conDenominador(28).build();
 		assertThat(resultadoEsperado, equalTo(new Fraccion.Builder()
-						.conNumerador(5)
-						.conDenominador(3).build()
-						.multiplicar(new Fraccion.Builder()
-												.conNumerador(2)
-												.conDenominador(4).build())));		
+												.conNumerador(50)
+												.conDenominador(7).build()
+												.restar(new Fraccion.Builder()
+														.conNumerador(45)
+														.conDenominador(4).build())));		
 	}
 
 	

@@ -38,29 +38,28 @@ public final class Fraccion {
 	
 	
 	public Fraccion sumar(Fraccion fraccionSuma) {
-		return sumarORestar(fraccionSuma, true);
+		return sumarORestar(fraccionSuma);
 	}
 	
 	public Fraccion restar(Fraccion fraccionResta) {		
-		return sumarORestar(fraccionResta, false);
+		return sumarORestar(new Fraccion(-fraccionResta.numerador, fraccionResta.denominador));
 	}
 		
 	public Fraccion multiplicar(Fraccion fraccionMultiplicador) {
-		return dividirOMultiplicar(fraccionMultiplicador, true);
+		return dividirOMultiplicar(fraccionMultiplicador);
 	}
 	
 	public Fraccion dividir(Fraccion fraccionDivisora) {		
-		return dividirOMultiplicar(fraccionDivisora, false);
+		return dividirOMultiplicar(new Fraccion(fraccionDivisora.denominador, fraccionDivisora.numerador));
 	}
 	
-	private Fraccion sumarORestar(Fraccion fraccion, boolean esSuma) {		
+	private Fraccion sumarORestar(Fraccion fraccion) {		
 		int mcm = OperacionMatematicaUtil.mcm(this.denominador, fraccion.denominador);
-		return new Fraccion(obtenerNumerador(mcm, this.denominador, this.numerador) + obtenerNumerador(mcm, (esSuma?1:-1)* fraccion.denominador, fraccion.numerador), mcm);
+		return new Fraccion(obtenerNumerador(mcm, this.denominador, this.numerador) + obtenerNumerador(mcm, fraccion.denominador, fraccion.numerador), mcm);
 	}
 	
-	private Fraccion dividirOMultiplicar(Fraccion fraccion, boolean esMultiplicacion) {		
-		return new Fraccion(this.numerador * (esMultiplicacion ? fraccion.numerador : fraccion.denominador) , 
-							this.denominador * (esMultiplicacion ? fraccion.denominador : fraccion.numerador));
+	private Fraccion dividirOMultiplicar(Fraccion fraccion) {		
+		return new Fraccion(this.numerador * fraccion.numerador , this.denominador * fraccion.denominador);
 	}
 	
 	private static int obtenerNumerador(int mcm, int denominador, int numerador) {
